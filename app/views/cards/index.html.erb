@@ -1,0 +1,26 @@
+<h1><%= @deck.name %></h1>
+
+<table>
+  <tr>
+    <th>Term</th>
+    <th>Definition</th>
+    <th>Hint</th>
+    <th></th>
+    <th></th>
+    <th></th>
+  </tr>
+
+<% @cards.each do |card| %>
+  <tr>
+    <td><%= link_to card.term, deck_card_path(@deck, card) %></td>
+    <td><%= card.definition %></td>
+    <td><%= card.hint %></td>
+    <td><%= link_to 'Edit', edit_deck_card_path(@deck, card) if user_signed_in? %></td>
+    <td><%= link_to 'Destroy', deck_card_path(@deck, card), method: :delete, data: { confirm: 'Are you sure?' } if user_signed_in? %></td>
+  </tr>
+<% end %>
+</table>
+
+<br />
+
+<%= link_to 'New Card', new_deck_card_path(@deck) if user_signed_in? %>

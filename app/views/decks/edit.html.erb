@@ -1,0 +1,7 @@
+<h1>Edit deck</h1>
+
+<%= render 'form' %>
+
+<%= link_to 'Show', @deck %> |
+<%= link_to 'Back', decks_path %> | 
+<%= link_to 'Delete', @deck, method: :delete, data: { confirm: 'Are you sure?' } %>

@@ -1,0 +1,21 @@
+<h1>Your decks</h1>
+
+<table>
+  <tr>
+    <th>Name</th>
+    <th>Description</th>
+  </tr>
+
+<% current_user.organization.decks.each do |deck| %>
+  <tr>
+    <td><%= link_to deck.name, deck %></td>
+    <td><%= deck.description %></td>
+  </tr>
+<% end %>
+</table>
+
+<br />
+
+<%= link_to 'New Deck', new_deck_path if user_signed_in? %>
+<br><br>
+

@@ -1,0 +1,31 @@
+<h1><%= @organization.name %> decks</h1>
+
+<table>
+  <tr>
+    <th>Name</th>
+    <th>Organization</th>
+    <th></th>
+    <th></th>
+    <th></th>
+  </tr>
+
+<% @organization.decks.each do |deck| %>
+  <tr>
+    <td><%= link_to deck.name, deck %></td>
+    <td><%= deck.organization.name %></td>
+    <td></td>
+    <td><%= link_to 'Edit', edit_deck_path(deck) if user_signed_in? %></td>
+    <td><%= link_to 'Delete deck', deck, method: :delete, data: { confirm: 'Are you sure?' } if user_signed_in? %></td>
+  </tr>
+<% end %>
+</table>
+
+<br />
+
+<%= link_to 'New Deck', new_deck_path if user_signed_in? %>
+<br>
+===========================================
+<br>
+
+<%= link_to 'Edit', edit_organization_path(@organization) %> |
+<%= link_to 'Back', organizations_path %>

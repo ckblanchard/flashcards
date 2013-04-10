@@ -1,0 +1,6 @@
+forms castoff material
+
+  <div class="field">
+    <%= f.label :deck_id %><br />
+    <%= f.collection_select :deck_id, Deck.all, :id, :name %>
+  </div>
