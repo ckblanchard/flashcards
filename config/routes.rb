@@ -1,13 +1,24 @@
 Flashcards::Application.routes.draw do
-  devise_for :users
+  root :to => "basicpages#welcome"
 
-  root :to => "decks#index"
-  
-  resources :organizations
+  get "basicpages/welcome"
+
+  get "basicpages/about"
+
+  devise_for :users
   
   resources :decks do
     resources :cards
   end
+
+  namespace :admin do
+    resources :organizations
+  end
+
+  resources :organizations, only: [:index, :show]
+
+
+
 
 
   # The priority is based upon order of creation:
