@@ -12,8 +12,8 @@
   <div><%= f.label :last_name %><br />
   <%= f.text_field :last_name %></div>
 
-  <div><%= f.label :organization_id %><br />
-  <%= f.collection_select :organization_id, Organization.all, :id, :name %></div>
+  <div><%# f.label :organization_id %><br />
+  <%# f.collection_select :organization_id, Organization.all, :id, :name %></div>
 
   <div><%= f.label :password %><br />
   <%= f.password_field :password %></div>

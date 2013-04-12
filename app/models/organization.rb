@@ -5,4 +5,6 @@ class Organization < ActiveRecord::Base
   has_many :decks
   has_many :admins
 
+  validates :name, :uniqueness => true
+
 end

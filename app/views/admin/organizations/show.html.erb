@@ -1,4 +1,9 @@
+<% if @organization %>
 <h1><%= @organization.name %> decks</h1>
+<% else %>
+<%= render "form" %>
+<% end %>
+
 
 <table>
   <tr>

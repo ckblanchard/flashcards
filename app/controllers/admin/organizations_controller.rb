@@ -3,7 +3,11 @@ class Admin::OrganizationsController < ApplicationController
 
   # GET /organizations/1
   def show
-    @organization = current_admin.organization
+    if current_admin.organization
+      @organization = current_admin.organization
+    else
+      redirect_to admin_organizations_path
+    end
   end
 
   # GET /organizations/new
@@ -12,12 +16,24 @@ class Admin::OrganizationsController < ApplicationController
   end
 
   def edit
-    @organization = current_admin.organization
+
+    if current_admin.organization
+      @organization = current_admin.organization
+    else
+      @organization = Organization.new(params[:organization])
+
+      if @organization.save
+        redirect_to admin_organizations_path, notice: 'Organization was successfully created.'
+      else
+        render action: "new"
+      end
+
+    end
   end
 
   # POST /organizations
   def create
-    @organization = Organization.new(params[:organization])
+    @organization = Organization.new(params[:name])
 
     if @organization.save
       redirect_to admin_organizations_path, notice: 'Organization was successfully created.'
