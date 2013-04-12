@@ -23,7 +23,7 @@ class DecksController < ApplicationController
     @deck = Deck.find(params[:id])
   end
 
-   def edit
+  def edit
     @deck = Deck.find(params[:id])
   end
 

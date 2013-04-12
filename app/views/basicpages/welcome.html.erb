@@ -1,2 +1,44 @@
-<h1>Basicpages#welcome</h1>
-<p>Find me in app/views/basicpages/welcome.html.erb</p>
+<h1>Welcome to Flashcards</h1>
+
+<p>Training resources for businesses</p>
+
+<% if !user_signed_in? %>
+<%= link_to "Sign in as a user", new_user_session_path %> | 
+<%= link_to "Create a new user account", new_user_registration_path %>
+<br><br>
+<hr>
+<br>
+<%= link_to "Sign in as an administrator", new_admin_session_path %> | 
+<%= link_to "Create a new administrator account", new_admin_registration_path %>
+<% end %>
+
+<% if user_signed_in? %>
+
+  <%= link_to "View your decks", decks_path %>
+
+<% end %>
+
+
+<!-- User sign-in form -->
+<h3>Sign in as a user</h3>
+<%= form_for(@user, :as => "user", :url => session_path("user")) do |f| %>
+  <div><%= f.label :email %><br />
+  <%= f.email_field :email, :autofocus => true %></div>
+
+  <div><%= f.label :password %><br />
+  <%= f.password_field :password %></div>
+
+  <div><%= f.submit "Sign in" %></div>
+<% end %>
+
+<!-- Admin sign-in form -->
+<h3>Sign in as an admin</h3>
+<%= form_for(@admin, :as => "admin", :url => session_path("admin")) do |f| %>
+  <div><%= f.label :email %><br />
+  <%= f.email_field :email, :autofocus => true %></div>
+
+  <div><%= f.label :password %><br />
+  <%= f.password_field :password %></div>
+
+  <div><%= f.submit "Sign in" %></div>
+<% end %>

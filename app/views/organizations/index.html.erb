@@ -1,17 +1,9 @@
-<h1>Organizations using %Flashcards%</h1>
+<h1>Organizations using Flashcards</h1>
 
-<table>
-  <tr>
-    <th>Organization</th>
-  </tr>
-
+<ul>
 <% @organizations.each do |organization| %>
-  <tr>
-    <td><%= organization.name %></td>
-  </tr>
+  
+    <li><%= organization.name %></li>
+  
 <% end %>
-</table>
-
-<br />
-
-
+</ul>

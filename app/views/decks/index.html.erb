@@ -1,4 +1,4 @@
-<h1>Your decks</h1>
+<h1>Your decks from <%= current_user.organization.name %></h1>
 
 <table>
   <tr>
@@ -16,6 +16,6 @@
 
 <br />
 
-<%= link_to 'New Deck', new_deck_path if user_signed_in? %>
+<%# link_to 'New Deck', new_deck_path if user_signed_in? %>
 <br><br>
 

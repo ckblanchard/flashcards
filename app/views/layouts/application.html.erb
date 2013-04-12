@@ -7,16 +7,43 @@
   <%= csrf_meta_tags %>
 </head>
 <body>
-   <p class="notice"><%= notice %></p>
-   <p class="alert"><%= alert %></p>
 
+<div id="top-bar">
   <% if user_signed_in? %>
-  	<%= link_to "Sign out", destroy_user_session_path, method: :delete %> | <%= "#{current_user.first_name} #{current_user.last_name}" %> | <%= link_to "#{current_user.organization.name}", decks_path %>
+  	<%= link_to "User sign out", destroy_user_session_path, method: :delete %> | 
+    <%= "#{current_user.first_name} #{current_user.last_name}" %> | 
+    <%= link_to "#{current_user.organization.name}", decks_path %> |
   <% else %>
-  	<%= link_to "Sign in", new_user_session_path %>
+  	<%= link_to "User sign in", new_user_session_path %> |
   <% end %>
 
+ <% if admin_signed_in? %>
+    <%= link_to "Admin sign out", destroy_admin_session_path, method: :delete %> | <%= link_to "#{current_admin.organization.name}", admin_root_path %>
+  <% else %>
+    <%= link_to "Admin sign in", new_admin_session_path %>
+  <% end %>
+
+</div> <!-- end top-bar -->
+
+  <p class="notice"><%= notice %></p>
+  <p class="alert"><%= alert %></p>
+
+<div id="main-content">
+
 <%= yield %>
+
+<!-- spacing for temp layout purposes -->
+<% 10.times do %>
+<p style="visibility: hidden;">.</p>
+<% end %>
+</div> <!-- end main-content -->
+
+<footer>
+  <ul>
+    <li><%= link_to "About", basicpages_about_path %></li>
+    <li><%= link_to "Who is using Flashcards", organizations_path %></li>
+  </ul>
+</footer>
 
 </body>
 </html>

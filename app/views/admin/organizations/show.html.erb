@@ -14,8 +14,8 @@
     <td><%= link_to deck.name, deck %></td>
     <td><%= deck.organization.name %></td>
     <td></td>
-    <td><%= link_to 'Edit', edit_deck_path(deck) if user_signed_in? %></td>
-    <td><%= link_to 'Delete deck', deck, method: :delete, data: { confirm: 'Are you sure?' } if user_signed_in? %></td>
+    <td><%= link_to 'Edit', edit_deck_path(deck) %></td>
+    <td><%= link_to 'Delete deck', deck, method: :delete, data: { confirm: 'Are you sure?' } %></td>
   </tr>
 <% end %>
 </table>
@@ -27,7 +27,6 @@
 ===========================================
 <br>
 
-<%= link_to 'Edit', edit_admin_organization_path %> |
-<%= link_to 'Back', admin_organizations_path %>
+<%= link_to 'Edit', edit_admin_organizations_path %> |
+<%= link_to 'Back', :back %>
 
-<!--new_admin_organization_path -->
