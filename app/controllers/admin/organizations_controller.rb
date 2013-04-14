@@ -3,37 +3,24 @@ class Admin::OrganizationsController < ApplicationController
 
   # GET /organizations/1
   def show
-    if current_admin.organization
-      @organization = current_admin.organization
-    else
-      redirect_to admin_organizations_path
-    end
+    @organization = current_admin.organization
   end
 
   # GET /organizations/new
   def new
+    #@organization = current_admin.admin.organization.new ???
     @organization = Organization.new
   end
 
   def edit
-
-    if current_admin.organization
-      @organization = current_admin.organization
-    else
-      @organization = Organization.new(params[:organization])
-
-      if @organization.save
-        redirect_to admin_organizations_path, notice: 'Organization was successfully created.'
-      else
-        render action: "new"
-      end
-
-    end
+    #@organization = Organization.find(params[:id])
+    @organization = current_admin.organization
   end
 
   # POST /organizations
   def create
-    @organization = Organization.new(params[:name])
+    #@organization = current_admin.admin.organizations.create(params[:admin]) ???
+    @organization = Organization.new(params[:organization])
 
     if @organization.save
       redirect_to admin_organizations_path, notice: 'Organization was successfully created.'
@@ -42,14 +29,16 @@ class Admin::OrganizationsController < ApplicationController
     end
   end
 
+
   # PUT /organizations/1
   def update
+    #@organization = Organization.find(params[:id])
     @organization = current_admin.organization
 
     if @organization.update_attributes(params[:organization])
-      redirect_to admin_organizations_path, notice: 'Organization was successfully updated.'
+      redirect_to admin_organizations_url, notice: 'Organization was successfully updated.'
     else
-      render action: "edit"
+      render action: :edit
     end
   end
 

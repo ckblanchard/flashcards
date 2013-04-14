@@ -3,4 +3,6 @@ class Deck < ActiveRecord::Base
 
   belongs_to :organization
   has_many :cards
+
+  validates :organization_id, :presence => true
 end

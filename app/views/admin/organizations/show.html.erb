@@ -1,8 +1,5 @@
-<% if @organization %>
 <h1><%= @organization.name %> decks</h1>
-<% else %>
-<%= render "form" %>
-<% end %>
+
 
 
 <table>
@@ -16,11 +13,11 @@
 
 <% @organization.decks.each do |deck| %>
   <tr>
-    <td><%= link_to deck.name, deck %></td>
-    <td><%= deck.organization.name %></td>
+    <td><%= link_to deck.name, admin_decks_path %></td>
+    <td><%= deck.description %></td>
     <td></td>
     <td><%= link_to 'Edit', edit_admin_deck_path(deck) %></td>
-    <td><%= link_to 'Delete deck', deck, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+    <td><%= link_to 'Delete deck', [:admin, deck], method: :delete, data: { confirm: 'Are you sure?' } %></td>
   </tr>
 <% end %>
 </table>
@@ -32,6 +29,6 @@
 ===========================================
 <br>
 
-<%= link_to 'Edit', edit_admin_organizations_path %> |
-<%= link_to 'Back', :back %>
+<%= link_to 'Edit', edit_admin_organizations_path %> 
+<%# link_to 'Back', :back %>
 

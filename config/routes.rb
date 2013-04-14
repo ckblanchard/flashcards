@@ -1,25 +1,29 @@
 Flashcards::Application.routes.draw do
   root :to => "basicpages#welcome"
 
-  devise_for :admins
-
   get "basicpages/welcome"
 
   get "basicpages/about"
 
-  devise_for :users
-  
-  resources :decks do
-    resources :cards
-  end
+  devise_for :admins
 
   namespace :admin do
     root :to => "organizations#show"
-    resource :organizations
+
     resources :decks do
       resources :cards
     end
+
+    resource :organizations
   end
+
+
+  devise_for :users
+  
+  resources :decks, only: [:index, :show] do
+    resources :cards, only: [:index, :show]
+  end
+
 
   resources :organizations, only: [:index, :show]
 

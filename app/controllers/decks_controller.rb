@@ -2,7 +2,8 @@ class DecksController < ApplicationController
   before_filter :authenticate_user!
 
   def index
-    @decks = Deck.all
+    #@decks = Deck.all
+    @decks = current_user.organization.decks
   end
 
  def new
@@ -13,14 +14,15 @@ class DecksController < ApplicationController
     @deck = Deck.new(params[:deck])
 
     if @deck.save
-      redirect_to @deck, notice: 'Organization was successfully created.'
+      redirect_to @deck, notice: 'Deck was successfully created.'
     else
       render action: "new"
     end
   end
 
   def show
-    @deck = Deck.find(params[:id])
+    @deck = current_user.organization.decks.find(params[:id])
+    #@deck = Deck.find(params[:id])
   end
 
   def edit

@@ -1,39 +1,45 @@
 class Admin::DecksController < ApplicationController
  before_filter :authenticate_admin!
 
+  # HAVE TO FIGURE OUT HOW TO LINK A NEW DECK WITH THE RIGHT ORG_ID
+
   def index
-    @decks = Deck.all
+    @decks = current_admin.organization.decks
   end
 
  def new
     @deck = Deck.new
+    @deck.organization = current_admin.organization
   end
 
   def create
     @deck = Deck.new(params[:deck])
 
     if @deck.save
-      redirect_to @deck, notice: 'Deck was successfully created.'
+      redirect_to [:admin, @deck], notice: 'Deck was successfully created.'
     else
-      render action: "new"
+      render action: :new
     end
   end
 
   def show
-    @deck = Deck.find(params[:id])
+    @deck = current_admin.organization.decks.find(params[:id])
+    #@deck = Deck.find(params[:id])
   end
 
   def edit
-    @deck = current_admin.deck
+    @deck = Deck.find(params[:id])
+    #@deck = current_admin.organization.decks.find(params[:id])
   end
 
   def update
-    @deck = current_admin.deck
+    @deck = Deck.find(params[:id])
+    #@deck = current_admin.organization.deck
 
     if @deck.update_attributes(params[:deck])
-      redirect_to @deck, notice: 'Deck was successfully updated.'
+      redirect_to [:admin, @deck], notice: 'Deck was successfully updated.'
     else
-      render action: "edit"
+      render action: :edit
     end
 
   end
@@ -42,10 +48,7 @@ class Admin::DecksController < ApplicationController
     @deck = Deck.find(params[:id])
     @deck.destroy
 
-    respond_to do |format|
-      format.html { redirect_to decks_url }
-      format.json { head :no_content }
-    end
+    redirect_to admin_decks_url, :notice => "Successfully destroyed deck."
   end
 
   

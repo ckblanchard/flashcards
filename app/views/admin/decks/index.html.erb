@@ -8,14 +8,17 @@
 
 <% current_admin.organization.decks.each do |deck| %>
   <tr>
-    <td><%= link_to deck.name, admin_deck_path %></td>
+    <td><%= link_to deck.name, admin_deck_path(deck) %></td>
     <td><%= deck.description %></td>
+    <td><%= link_to 'Edit deck', edit_admin_deck_path(deck) %></td>
+    <td><%= link_to 'Delete card', admin_deck_path(@deck), method: :delete, data: { confirm: 'Are you sure?' } %></td>
   </tr>
 <% end %>
 </table>
 
 <br />
 
-<%# link_to 'New Deck', new_deck_path if user_signed_in? %>
+<%= link_to 'New Deck', new_admin_deck_path %>
 <br><br>
 
+<!-- if admin_signed_in? -->

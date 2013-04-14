@@ -10,4 +10,19 @@ class Admin < ActiveRecord::Base
   # attr_accessible :title, :body
 
   belongs_to :organization
+
+  # After create takes a symbol for the name of a method it should call when the time comes
+  after_create :add_to_organization
+
+  # Our method that after_create will call when something has been created
+  def add_to_organization
+    organization = Organization.create(name: self.email) # Set it to the email because organizations have a validation on the name
+ 
+    # Assign the newly created organization to this user object
+    self.organization = organization
+ 
+    # Once we assign the association, save it!
+    self.save
+  end
+
 end
