@@ -15,9 +15,11 @@
   <%= f.text_field :last_name %></div>
 
   <!-- Only for an admin registration -->
-  <% if resource == @admin %>
-  <div><%= f.label :organization_name %><br />
-  <%= f.text_field :organization_name %></div>
+  <% if resource_name == :admin %>
+    <%= f.fields_for :organization do |organization_fields| %>
+      <div><%= organization_fields.label :name, "Organization Name" %><br>
+      <%= organization_fields.text_field :name %></div>
+    <% end %>
   <% end %>
 
   <!-- Temp - Only for a user registration -->

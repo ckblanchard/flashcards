@@ -8,6 +8,7 @@ body {
 /* ==== Top-bar area styles ==== */
 
 div#top-bar {
+	height: 20px;
 	padding: 16px 3px;
 	margin: 0;
 	background: rgb(8, 54, 84);

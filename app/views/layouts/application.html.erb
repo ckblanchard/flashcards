@@ -9,14 +9,17 @@
 <body>
 
 <div id="top-bar">
-  <% if user_signed_in? %>
-  	<%= link_to "User sign out", destroy_user_session_path, method: :delete %> | 
-    <%= "#{current_user.first_name} #{current_user.last_name}" %> | 
-    <%= link_to "Your briefcase", decks_path %>
-  <% else %>
-  	<%= link_to "User sign in", new_user_session_path %>
-  <% end %>
+  <% unless admin_signed_in? %>
+    
+    <% if user_signed_in? %>
+    	<%= link_to "User sign out", destroy_user_session_path, method: :delete %> | 
+      <%= "#{current_user.first_name} #{current_user.last_name}" %> | 
+      <%= link_to "Your briefcase", decks_path %>
+    <% else %>
+    	<%= link_to "User sign in", new_user_session_path %>
+    <% end %>
 
+  <% end %>
   
 
 
@@ -37,11 +40,13 @@
 </div> <!-- end main-content -->
 
 <footer>
+
   <ul>
     <li><%= link_to "About", basicpages_about_path %></li>
     <li><%= link_to "Who is using Flashcards", organizations_path %></li>
   </ul>
 
+<% unless user_signed_in? %>
   <ul>
     <% if admin_signed_in? %>
     <li>
@@ -56,6 +61,8 @@
     </li>
   <% end %>
   </ul>
+<% end %>
+
 </footer>
 
 </body>
