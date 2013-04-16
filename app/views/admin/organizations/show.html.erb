@@ -13,7 +13,7 @@
 
 <% @organization.decks.each do |deck| %>
   <tr>
-    <td><%= link_to deck.name, admin_decks_path %></td>
+    <td><%= link_to deck.name, admin_deck_path(deck) %></td>
     <td><%= deck.description %></td>
     <td></td>
     <td><%= link_to 'Edit', edit_admin_deck_path(deck) %></td>
@@ -29,6 +29,6 @@
 ===========================================
 <br>
 
-<%= link_to 'Edit', edit_admin_organizations_path %> 
+<%= link_to 'Edit', edit_admin_organization_path(@organization) %> 
 <%# link_to 'Back', :back %>
 

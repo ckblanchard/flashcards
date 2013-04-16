@@ -1,10 +1,14 @@
+<% unless user_signed_in? %>
+	<div id="welcome-sign-in-bar">
+		<%= link_to "User sign in", new_user_session_path %> | 
+		<%= link_to "Create a user account", new_user_registration_path %>
+	</div>
+<% end %>
+
 <h1>Welcome to Flashcards</h1>
 
-<p>Training resources for businesses</p>
-<% unless user_signed_in? %>
-<%= link_to "Sign in as a user", new_user_session_path %> | 
-<%= link_to "Create a new user account", new_user_registration_path %>
-<% end %>
+<h2>Training resources for businesses</h2>
+
 <br><br>
 
 <% if user_signed_in? %>

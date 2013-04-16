@@ -1,3 +1,5 @@
+<!-- Need to customize registrations for admin vs user -->
+
 <h2>Sign up</h2>
 
 <%= form_for(resource, :as => resource_name, :url => registration_path(resource_name)) do |f| %>
@@ -12,8 +14,17 @@
   <div><%= f.label :last_name %><br />
   <%= f.text_field :last_name %></div>
 
-  <div><%# f.label :organization_id %><br />
-  <%# f.collection_select :organization_id, Organization.all, :id, :name %></div>
+  <!-- Only for an admin registration -->
+  <% if resource == @admin %>
+  <div><%= f.label :organization_name %><br />
+  <%= f.text_field :organization_name %></div>
+  <% end %>
+
+  <!-- Temp - Only for a user registration -->
+  <% if resource == @user %>
+  <div><%= f.label :organization_id %><br />
+  <%= f.collection_select :organization_id, Organization.all, :id, :name %></div>
+  <% end %>
 
   <div><%= f.label :password %><br />
   <%= f.password_field :password %></div>

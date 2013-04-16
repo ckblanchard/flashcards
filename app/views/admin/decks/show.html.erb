@@ -1,4 +1,5 @@
 <h1><%= @deck.name %></h1>
+<h2><%= @deck.description %></h2>
 <!--<p>Maybe add some data about this deck, such as number of cards, and eventually success rate on guesses.</p> -->
 <p>This deck has <%= @deck.cards.count %> cards</p>
 
@@ -26,5 +27,7 @@
 
 <br>
 
-<%# link_to 'Edit', edit_deck_path(@deck) %> 
-<%= link_to 'Back', admin_decks_path %>
+<%= link_to 'Edit', edit_admin_deck_path(@deck) %> | 
+<%= link_to 'Back', admin_root_path %>
+
+

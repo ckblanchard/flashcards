@@ -30,7 +30,7 @@ class Admin::CardsController < ApplicationController
     if @card.save
       redirect_to admin_deck_card_url(@deck, @card), notice: 'Card was successfully created.'
     else
-      render action: :new
+      render :new
     end
   end
 
@@ -42,7 +42,7 @@ class Admin::CardsController < ApplicationController
     if @card.update_attributes(params[:card])
       redirect_to admin_deck_card_url, notice: 'Card was successfully updated.'
     else
-      render action: :edit
+      render :edit
     end
   end
 

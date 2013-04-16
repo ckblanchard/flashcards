@@ -14,7 +14,7 @@ Flashcards::Application.routes.draw do
       resources :cards
     end
 
-    resource :organizations
+    resources :organizations
   end
 
 

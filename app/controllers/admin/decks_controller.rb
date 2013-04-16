@@ -18,7 +18,7 @@ class Admin::DecksController < ApplicationController
     if @deck.save
       redirect_to [:admin, @deck], notice: 'Deck was successfully created.'
     else
-      render action: :new
+      render :new
     end
   end
 
@@ -39,7 +39,7 @@ class Admin::DecksController < ApplicationController
     if @deck.update_attributes(params[:deck])
       redirect_to [:admin, @deck], notice: 'Deck was successfully updated.'
     else
-      render action: :edit
+      render :edit
     end
 
   end

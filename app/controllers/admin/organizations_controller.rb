@@ -1,6 +1,11 @@
 class Admin::OrganizationsController < ApplicationController
   before_filter :authenticate_admin!
 
+  def index
+    #@organizations = Organization.all
+    @organization = current_admin.organization
+  end
+
   # GET /organizations/1
   def show
     @organization = current_admin.organization
@@ -25,20 +30,24 @@ class Admin::OrganizationsController < ApplicationController
     if @organization.save
       redirect_to admin_organizations_path, notice: 'Organization was successfully created.'
     else
-      render action: "new"
+      render :new, notice: "Please use a different name."
     end
   end
 
 
   # PUT /organizations/1
   def update
-    #@organization = Organization.find(params[:id])
-    @organization = current_admin.organization
+    @organization = Organization.find(params[:id])
+    #@organization = current_admin.organization
+
+    #attempt to re-assign admin's :organization_name if user renames organization's :name
+    # @admin = current_admin
+    # @admin.organization_name = @organization.name
 
     if @organization.update_attributes(params[:organization])
       redirect_to admin_organizations_url, notice: 'Organization was successfully updated.'
     else
-      render action: :edit
+      render :edit
     end
   end
 
