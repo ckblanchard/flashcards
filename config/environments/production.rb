@@ -75,4 +75,7 @@ ActionMailer::Base.smtp_settings = {
   :enable_starttls_auto => true
 }
 
+config.action_mailer.default_url_options = { :host => "serene-falls-4626.herokuapp.com" }
+
+
 end
