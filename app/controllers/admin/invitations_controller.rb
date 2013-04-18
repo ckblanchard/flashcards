@@ -3,17 +3,13 @@ class Admin::InvitationsController < Devise::InvitationsController
 
   # GET /admin/invitation/new
   def new
-    @admin = current_admin
     build_resource
     render :new
   end
 
   # POST /admin/invitation
   def create
-  case
-  when :admin
     params[:user][:organization_id] = current_admin.organization_id
-  end
 
     self.resource = resource_class.invite!(resource_params, current_inviter)
 
@@ -26,13 +22,3 @@ class Admin::InvitationsController < Devise::InvitationsController
   end
 
 end
-
-
-# class InvitationsController < DeviseInvitable::InvitationsController
-# def create
-# when :user
-# params[resource_name][:account_id] = current_account.id
-# end
-# super
-# end
-# end

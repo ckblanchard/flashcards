@@ -14,17 +14,17 @@ class Admin::CardsController < ApplicationController
   end
 
   def new
-    @deck = Deck.find(params[:deck_id])
+    @deck = current_admin.organization.decks.find(params[:deck_id])
     @card = Card.new
   end
 
   def edit
-    @deck = Deck.find(params[:deck_id])
+    @deck = current_admin.organization.decks.find(params[:deck_id])
     @card = Card.find(params[:id])
   end
 
   def create
-    @deck = Deck.find(params[:deck_id])
+    @deck = current_admin.organization.decks.find(params[:deck_id])
     @card = @deck.cards.build(params[:card])
 
     if @card.save
@@ -35,7 +35,7 @@ class Admin::CardsController < ApplicationController
   end
 
   def update
-    @deck = Deck.find(params[:deck_id])
+    @deck = current_admin.organization.decks.find(params[:deck_id])
     @card = Card.find(params[:id])
 
 

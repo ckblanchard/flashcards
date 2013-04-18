@@ -28,12 +28,12 @@ class Admin::DecksController < ApplicationController
   end
 
   def edit
-    @deck = Deck.find(params[:id])
+    @deck = current_admin.organization.decks.find(params[:id])
     #@deck = current_admin.organization.decks.find(params[:id])
   end
 
   def update
-    @deck = Deck.find(params[:id])
+    @deck = current_admin.organization.decks.find(params[:id])
     #@deck = current_admin.organization.deck
 
     if @deck.update_attributes(params[:deck])
@@ -45,7 +45,7 @@ class Admin::DecksController < ApplicationController
   end
 
   def destroy
-    @deck = Deck.find(params[:id])
+    @deck = current_admin.organization.decks.find(params[:id])
     @deck.destroy
 
     redirect_to admin_decks_url, :notice => "Successfully destroyed deck."
