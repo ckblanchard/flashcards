@@ -5,7 +5,7 @@ Flashcards::Application.routes.draw do
 
   get "basicpages/about"
 
-  devise_for :admins
+  devise_for :admins #, :controllers => { :invitations => "admin/invitations" }
 
   namespace :admin do
     root :to => "organizations#show"
@@ -17,8 +17,8 @@ Flashcards::Application.routes.draw do
     resources :organizations
   end
 
-
-  devise_for :users
+  # Admin sends email to user to sign up
+  devise_for :users, :controllers => { :invitations => "admin/invitations" }
   
   resources :decks, only: [:index, :show] do
     resources :cards, only: [:index, :show]

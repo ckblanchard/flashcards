@@ -1,11 +1,27 @@
-<h1><%= @organization.name %> decks</h1>
+<h1>Control panel</h1>
+<h3><%= @organization.name %></h3>
 
 
-
+<h3>List of users</h3>
 <table>
   <tr>
     <th>Name</th>
-    <th>Organization</th>
+    <th>Stats (to come)</th>
+  </tr>
+<% @organization.users.each do |user| %>
+  <tr>
+  <td><%= "#{user.first_name} #{user.last_name}" %></td>
+  </tr>
+<% end %>
+</table>
+<%= link_to "Invite a new user", new_user_invitation_path %>
+<br>
+===========================================
+<br>
+<table>
+  <tr>
+    <th>Name</th>
+    <th>Description</th>
     <th></th>
     <th></th>
     <th></th>
@@ -24,11 +40,11 @@
 
 <br />
 
-<%= link_to 'New Deck', new_admin_deck_path if admin_signed_in? %>
+<%= link_to 'Create a New Deck', new_admin_deck_path if admin_signed_in? %>
 <br>
 ===========================================
 <br>
 
-<%= link_to 'Edit', edit_admin_organization_path(@organization) %> 
+<%= link_to 'Edit organization information', edit_admin_organization_path(@organization) %> 
 <%# link_to 'Back', :back %>
 

@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Flashcards</title>
+  <%= stylesheet_link_tag    "application", :media => "all" %>
+  <%= javascript_include_tag "application" %>
+  <%= csrf_meta_tags %>
+</head>
+<body>
+
+<div id="top-bar">
+  <% unless admin_signed_in? %>
+    
+    <% if user_signed_in? %>
+    	<%= link_to "User sign out", destroy_user_session_path, method: :delete %> | 
+      <%= "#{current_user.first_name} #{current_user.last_name}" %> | 
+      <%= link_to "Your briefcase", decks_path %>
+    <% else %>
+    	<%= link_to "User sign in", new_user_session_path %>
+    <% end %>
+
+  <% end %>
+  
+
+
+</div> <!-- end top-bar -->
+
+
+<div id="main-content">
+
+  <p class="notice"><%= notice %></p>
+  <p class="alert"><%= alert %></p>
+
+<%= yield %>
+
+<!-- spacing for temp layout purposes -->
+<% 10.times do %>
+<p style="visibility: hidden;">.</p>
+<% end %>
+</div> <!-- end main-content -->
+
+<footer>
+
+  <ul>
+    <li><%= link_to "About", basicpages_about_path %></li>
+    <li><%= link_to "Who is using Flashcards", organizations_path %></li>
+  </ul>
+
+<% unless user_signed_in? %>
+  <ul>
+    <% if admin_signed_in? %>
+    <li>
+      <%= link_to "Admin sign out", destroy_admin_session_path, method: :delete %>
+    </li>
+    <li> 
+      <%= link_to "Your organization homepage", admin_root_path %>
+    </li>
+  <% else %>
+    <li>
+      <%= link_to "Admin sign in", new_admin_session_path %>
+    </li>
+  <% end %>
+  </ul>
+<% end %>
+
+</footer>
+
+</body>
+</html>

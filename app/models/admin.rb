@@ -3,7 +3,9 @@ class Admin < ActiveRecord::Base
   # :token_authenticatable, :confirmable,
   # :lockable, :timeoutable and :omniauthable
   devise :database_authenticatable, :registerable,
-         :recoverable, :rememberable, :trackable, :validatable
+         :recoverable, :rememberable, :trackable, :validatable #:invitable, 
+
+  include DeviseInvitable::Inviter
 
   after_initialize :initialize_organization
 
@@ -14,6 +16,7 @@ class Admin < ActiveRecord::Base
 
   belongs_to :organization
   accepts_nested_attributes_for :organization
+  has_many :invitations, :class_name => 'User', :as => :invited_by
 
   # # After create takes a symbol for the name of a method it should call when the time comes
   # after_create :add_to_organization
