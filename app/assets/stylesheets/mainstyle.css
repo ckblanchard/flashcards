@@ -1,8 +1,11 @@
 body {
-	background: rgba(156, 175, 187, 1);
+	background-color: rgba(156, 175, 187, 1);
 	margin: 0;
 	padding: 0;
-	font-family: sans-serif;
+	font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+	font-size: 14px;
+	line-height: 20px;
+
 }
 
 /* ==== Top-bar area styles ==== */
