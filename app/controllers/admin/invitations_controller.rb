@@ -9,9 +9,12 @@ class Admin::InvitationsController < Devise::InvitationsController
 
   # POST /admin/invitation
   def create
-    params[:user][:organization_id] = current_admin.organization_id
+    user = User.new(resource_params)
+    user.organization = current_admin.organization
+    user.invited_by = current_admin
+    user.invite!
 
-    self.resource = resource_class.invite!(resource_params, current_inviter)
+    self.resource = user
 
     if resource.errors.empty?
       set_flash_message :notice, :send_instructions, :email => self.resource.email

@@ -16,10 +16,10 @@ class CardsController < ApplicationController
   #   @card = Card.new
   # end
 
-  # def edit
-  #   @deck = Deck.find(params[:deck_id])
-  #   @card = Card.find(params[:id])
-  # end
+  def edit
+    @deck = Deck.find(params[:deck_id])
+    @card = @deck.cards.find(params[:id])
+  end
 
   # def create
   #   @deck = Deck.find(params[:deck_id])
@@ -32,17 +32,17 @@ class CardsController < ApplicationController
   #   end
   # end
 
-  # def update
-  #   @deck = Deck.find(params[:deck_id])
-  #   @card = Card.find(params[:id])
+  def update
+    @deck = Deck.find(params[:deck_id])
+    @card = @deck.cards.find(params[:id])
 
 
-  #   if @card.update_attributes(params[:card])
-  #     redirect_to deck_card_url, notice: 'Card was successfully updated.'
-  #   else
-  #     render action: "edit"
-  #   end
-  # end
+    if @card.update_attributes(params[:card])
+      redirect_to deck_card_url, notice: 'Card was successfully updated.'
+    else
+      render action: "edit"
+    end
+  end
 
   # def destroy
   #   @card = Card.find(params[:id])

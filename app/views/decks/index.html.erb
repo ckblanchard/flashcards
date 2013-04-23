@@ -1,15 +1,18 @@
-<h1>Your decks from <%= current_user.organization.name %></h1>
+<h1>Your decks</h1>
+<h2><%= current_user.organization.name %></h2>
 
 <table>
   <tr>
     <th>Name</th>
     <th>Description</th>
+    <th>Percentage correct</th>
   </tr>
 
 <% current_user.organization.decks.each do |deck| %>
   <tr>
     <td><%= link_to deck.name, deck %></td>
     <td><%= deck.description %></td>
+    <td>Stats</td>
   </tr>
 <% end %>
 </table>

@@ -1,30 +1,45 @@
-<p id="notice"><%= notice %></p>
 
-<p>
-  <b>Deck:</b>
-  <%= @card.deck.name %>
-</p>
+<h2>Deck: <%= @card.deck.name %></h2>
 
-<p>
-  <b>Term:</b>
-  <%= @card.term %>
-</p>
+<div id="card-holder">
 
-<p>
-  <b>Definition:</b>
-  <%= @card.definition %>
-</p>
+	<div id="card">
+    <p>
+  	  <b>Term:</b>
+	   <%= @card.term %>
+    </p>
+  </div>
 
-<p>
-  <b>Hint:</b>
-  <%= @card.hint %>
-</p>
+  <div id="flipButtons">
+    <a id="definition" class="flipButton" href="#">Answer</a>
+    <a id="hint" class="flipButton" href="#">Need a hint?</a>
+    <a id="revert" class="flipButton" href="#">Revert</a>
+  </div> <!-- end flipButtons -->
 
-<p>
+</div> <!-- end card-holder -->
+
+  <div id="hidden-cards">
+	<div id="card-definition">
+    <p>
+  	  <b>Definition:</b>
+  	  <%= @card.definition %>
+    </p>
+	</div> <!-- end card-definition -->
+
+  	<div id="card-hint">
+      <p>
+    	  <b>Hint:</b>
+    	  <%= @card.hint %>
+      </p>
+  	</div> <!-- end card-hint -->
+
+
+  </div> <!-- end hidden cards -->
+
+
 <%# link_to 'Add another card to this deck', new_deck_card_path %>
-</p>
+
 <%# link_to 'Edit', edit_deck_card_path(@deck) %> 
 <%= link_to 'Back', deck_path(@deck) %>
-
 
 

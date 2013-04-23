@@ -1,5 +1,12 @@
 Flashcards::Application.routes.draw do
+
+  # get "organization_users/destroy"
+
   root :to => "basicpages#welcome"
+
+  resources :guesses
+
+  resources :organization_users, only: [:destroy]
 
   get "basicpages/welcome"
 
@@ -21,7 +28,7 @@ Flashcards::Application.routes.draw do
   devise_for :users, :controllers => { :invitations => "admin/invitations" }
   
   resources :decks, only: [:index, :show] do
-    resources :cards, only: [:index, :show]
+    resources :cards, only: [:index, :show, :edit, :update]
   end
 
 

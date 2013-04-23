@@ -1,5 +1,4 @@
 <h1><%= @deck.name %></h1>
-<!--<p>Maybe add some data about this deck, such as number of cards, and eventually success rate on guesses.</p> -->
 <p>This deck has <%= @deck.cards.count %> cards</p>
 
 <table>
@@ -8,6 +7,7 @@
     <th>Definition</th>
     <th>Hint</th>
     <th></th>
+    <th>Rating</th>
     <th></th>
   </tr>
 
@@ -16,15 +16,28 @@
     <td><%= link_to card.term, deck_card_path(@deck, card) %></td>
     <td><%= card.definition %></td>
     <td><%= card.hint %></td>
-    <td><%# link_to 'Edit card', edit_deck_card_path(@deck, card) if user_signed_in? %></td>
+
+    <!-- Won't be able to edit the hint until I add a hint model -->
+
+    <td><%# link_to 'Edit hint', edit_deck_card_path(@deck, card) if user_signed_in? %></td>
+    <td>Stats</td>
     <td><%# link_to 'Delete card', deck_card_path(@deck, card), method: :delete, data: { confirm: 'Are you sure?' } if user_signed_in? %></td>
   </tr>
 <% end %>
 </table>
 
 <%# link_to 'Add a card to this deck', new_deck_card_path(@deck) if user_signed_in? %>
-
 <br>
-
+<br>
+<br>
+<%= @deck_card.term %> |
+<%= @deck_card.id %>
+<br>
+<br>
+<br>
+<%= link_to 'Create guess', guesses_path, method: :create %>
+<br>
+<br>
+<br>
 <%# link_to 'Edit', edit_deck_path(@deck) %> 
 <%= link_to 'Back', decks_path %>

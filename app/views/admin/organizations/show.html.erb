@@ -1,23 +1,29 @@
 <h1>Control panel</h1>
-<h3><%= @organization.name %></h3>
+<h2><%= @organization.name %> | <small><%= link_to 'Edit organization name', edit_admin_organization_path(@organization) %> </small></h2>
 
 
-<h3>List of users</h3>
+<h3>List of users | <small><%= link_to "Invite a new user", new_user_invitation_path %>
+</small></h3>
+
 <table>
   <tr>
     <th>Name</th>
+    <th>Email</th>
     <th>Stats (to come)</th>
   </tr>
 <% @organization.users.each do |user| %>
   <tr>
   <td><%= "#{user.first_name} #{user.last_name}" %></td>
+  <td><%= user.email %></td>
+  <td>Stats to come</td>
+  <td><%= link_to "Delete user", organization_user_path(user), method: :delete, data: { confirm: 'Are you sure?' } %></td>
   </tr>
 <% end %>
 </table>
-<%= link_to "Invite a new user", new_user_invitation_path %>
-<br>
-===========================================
-<br>
+
+<h3>List of decks | <small><%= link_to 'Create a New Deck', new_admin_deck_path if admin_signed_in? %>
+</small></h3>
+
 <table>
   <tr>
     <th>Name</th>
@@ -38,13 +44,4 @@
 <% end %>
 </table>
 
-<br />
-
-<%= link_to 'Create a New Deck', new_admin_deck_path if admin_signed_in? %>
-<br>
-===========================================
-<br>
-
-<%= link_to 'Edit organization information', edit_admin_organization_path(@organization) %> 
-<%# link_to 'Back', :back %>
 

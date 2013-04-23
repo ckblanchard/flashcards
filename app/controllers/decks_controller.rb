@@ -9,6 +9,12 @@ class DecksController < ApplicationController
   def show
     @deck = current_user.organization.decks.find(params[:id])
     #@deck = Deck.find(params[:id])
+
+    # action for random deck_card for the user deck#show
+    @deck_card = Card.random_card_for_deck(@deck)
+
+    #Need logic to prevent the same card from appearing twice in a row
+
   end
 
  # def new
