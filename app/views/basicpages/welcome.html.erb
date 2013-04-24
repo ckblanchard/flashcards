@@ -1,19 +1,66 @@
-<% unless user_signed_in? %>
+<!--
+<%# unless user_signed_in? %>
 	<div id="welcome-sign-in-bar">
-		<%= link_to "User sign in", new_user_session_path %> | 
-		<%= link_to "Create a user account", new_user_registration_path %>
+		<%# link_to "User sign in", new_user_session_path %> | 
+		<%# link_to "Create a user account", new_user_registration_path %>
 	</div>
+<%# end %>
+-->
+
+<div id="welcome-container">
+
+	<div id="welcome-left">
+
+		<h1>Flashcards</h1>
+		<h2>Customizable training resources <br />in 3 short steps</h2>
+
+		<p>1.) Sign up your organization</p>
+		<p>2.) Create decks of flashcards</p>
+		<p>3.) Invite people to use your flashcards</p>
+
+		<% if user_signed_in? %>
+			<%= link_to "Go to your briefcase", decks_path %>
+		<% end %> 
+
+
+	</div> <!-- end welcome-left -->
+
+
+<% unless user_signed_in? || admin_signed_in? %>
+	<div id="welcome-right">
+
+<!-- 		<div id="sign-in-form"> -->
+			<!-- User sign-in form -->
+			<h3>User sign-in</h3>
+			<%= form_for(@user, :as => "user", :url => session_path("user")) do |f| %>
+			  <div><%= f.label :email %><br />
+			  <%= f.email_field :email, :autofocus => true %></div>
+
+			  <div><%= f.label :password %><br />
+			  <%= f.password_field :password %></div>
+
+			  <div><%= f.submit "Sign in" %></div>
+			<% end %>
+
+			<br />
+			<!-- Admin sign-in form -->
+			<h3>Admin sign-in</h3>
+			<%= form_for(@admin, :as => "admin", :url => session_path("admin")) do |f| %>
+			  <div><%= f.label :email %><br />
+			  <%= f.email_field :email, :autofocus => true %></div>
+
+			  <div><%= f.label :password %><br />
+			  <%= f.password_field :password %></div>
+
+			  <div><%= f.submit "Sign in" %></div>
+			<% end %>
+		<!-- </div>  end sign-in form div -->
+
+	</div> <!-- end welcome-right -->
 <% end %>
 
-<h1>Welcome to Flashcards</h1>
+</div>
 
-<h2>Training resources for businesses</h2>
-
-<br><br>
-
-<% if user_signed_in? %>
-<%= link_to "Go to your briefcase", decks_path %>
-<% end %>
 
 <br>
 <%# link_to "Sign in as an administrator", new_admin_session_path %> <!-- | --> 

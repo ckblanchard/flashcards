@@ -3,20 +3,23 @@ class GuessesController < ApplicationController
   # 	@guess = Guess.new
   # end
 
-  # def create
+  def create
   #   #need user_id
   #   #need card_id
-  #   @deck = current_user.organization.decks.find(params[:id])
-  #   @deck_card = Card.random_card_for_deck(@deck)
+    # @deck = current_user.organization.decks.find(params[:id])
+    # @deck_card = Card.random_card_for_deck(@deck)
     
-  # 	@guess = Guess.new(params[:guess])
-
+  	@guess = Guess.new#(params[:guess])
+    @guess.user_id = current_user.id
+    @guess.card_id = @deck_card.id
   # 	redirect_to deck_path(@deck)
-  	# if @guess.save
-  	# 	redirect_to deck_path
-  	# else
-  	# 	redirect_to deck_path
-  # end
+  	if @guess.save
+  		redirect_to deck_path
+  	else
+  		redirect_to deck_path
+    end
+  end
+
 end
 
 

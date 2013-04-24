@@ -1,43 +1,54 @@
+<%= link_to 'Back to your decks', decks_path %>
+
 <h1><%= @deck.name %></h1>
 <p>This deck has <%= @deck.cards.count %> cards</p>
 
-<table>
-  <tr>
-    <th>Term</th>
-    <th>Definition</th>
-    <th>Hint</th>
-    <th></th>
-    <th>Rating</th>
-    <th></th>
-  </tr>
+<div id="card-holder">
 
-<% @deck.cards.each do |card| %>
-  <tr>
-    <td><%= link_to card.term, deck_card_path(@deck, card) %></td>
-    <td><%= card.definition %></td>
-    <td><%= card.hint %></td>
+  <div id="card">
+    <p>
+      <b>Term:</b>
+     <%= @deck_card.term %>
+    </p>
+  </div>
 
-    <!-- Won't be able to edit the hint until I add a hint model -->
+  <div id="flipButtons">
+    <a id="definition" class="flipButton" href="#">Answer</a>
+    <a id="hint" class="flipButton" href="#">Need a hint?</a>
+    <a id="revert" class="flipButton" href="#">Revert</a>
+  </div> <!-- end flipButtons -->
 
-    <td><%# link_to 'Edit hint', edit_deck_card_path(@deck, card) if user_signed_in? %></td>
-    <td>Stats</td>
-    <td><%# link_to 'Delete card', deck_card_path(@deck, card), method: :delete, data: { confirm: 'Are you sure?' } if user_signed_in? %></td>
-  </tr>
-<% end %>
-</table>
+</div> <!-- end card-holder -->
 
-<%# link_to 'Add a card to this deck', new_deck_card_path(@deck) if user_signed_in? %>
-<br>
-<br>
-<br>
-<%= @deck_card.term %> |
-<%= @deck_card.id %>
-<br>
-<br>
-<br>
-<%= link_to 'Create guess', guesses_path, method: :create %>
-<br>
-<br>
-<br>
+  <div id="hidden-cards">
+
+    <div id="card-definition">
+      <p>
+        <b>Definition:</b>
+        <%= @deck_card.definition %>
+      </p>
+    </div> <!-- end card-definition -->
+
+      <div id="card-hint">
+        <p>
+          <b>Hint:</b>
+          <%= @deck_card.hint %>
+        </p>
+      </div> <!-- end card-hint -->
+
+  </div> <!-- end hidden cards -->
+
+
+
+<%# @deck_card.term %> 
+<%# @deck_card.id %>
+
+<!-- Future functionality to say whether you guessed correct -->
+<%# link_to 'Correct!', { :controller => "guesses", 
+                          :action => "create", 
+                          :user_id => "current_user.id", 
+                          :card_id => "deck_card.id" }, 
+                          :method => "post" %>
+<%# link_to 'Correct!', { controller: "guesses", action: "create", user_id: "current_user.id", card_id: "deck_card.id" }, method: "post" %>
+
 <%# link_to 'Edit', edit_deck_path(@deck) %> 
-<%= link_to 'Back', decks_path %>

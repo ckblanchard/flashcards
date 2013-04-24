@@ -1,11 +1,27 @@
+/* ==== COLORS - based on body background ==== */
+/* 
+PRIMARY
+rgb(106, 163, 198) -- light blue
+rgb(50, 56, 59) -- gunmetal grey
+rgb(156, 175, 187) -- light blue-grey (body background)
+rgb(32, 49, 59) -- dark blue
+rgb(113, 127, 136) -- light gunmetal grey
+
+COMPLEMENTARY
+rgb(238, 249, 255) -- off-white
+rgb(81, 99, 110) -- med gunmetal grey
+rgb(110, 94, 70) -- brown
+rgb(187, 174, 156) -- tan
+*/
+
 body {
 	background-color: rgba(156, 175, 187, 1);
 	margin: 0 auto;
 	padding: 0;
 	font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
-	font-size: 14px;
+/*	font-size: 14px;
 	line-height: 20px;
-
+*/
 }
 
 /* ==== Top-bar area styles ==== */
@@ -15,11 +31,33 @@ div#top-bar {
 	padding: 16px 3px;
 	margin: 0;
 	background: rgb(8, 54, 84);
-	background: url(flashcards_logo.png) top 10px left 5px no-repeat, linear-gradient(to right, rgb(8, 54, 84) 0%,rgb(57, 94, 118) 50%, rgb(8, 54, 84) 100%);
-	box-shadow: 0px 2px 4px rgba(0,0,0,0.60);
+background: linear-gradient(to right, rgb(8,54,84) 0%,rgb(57,94,118) 50%, rgb(8,54,84) 100%);
+/*	background-image: url(flashcards_logo.png) top 10px left 5px no-repeat, rgb(8, 54, 84);
+	background: url(flashcards_logo.png) top 10px left 5px no-repeat, linear-gradient(to right, rgb(8,54,84) 0%,rgb(57,94,118) 50%, rgb(8,54,84) 100%);
+	background: url(flashcards_logo.png) top 10px left 5px no-repeat, -o-linear-gradient(to right, rgb(8,54,84) 0%,rgb(57,94,118) 50%, rgb(8,54,84) 100%);
+	background: url(flashcards_logo.png) top 10px left 5px no-repeat, -moz-linear-gradient(to right, rgb(8,54,84) 0%,rgb(57,94,118) 50%, rgb(8,54,84) 100%);
+	background: url(flashcards_logo.png) top 10px left 5px no-repeat, -webkit-linear-gradient(right, rgb(8,54,84) 0%,rgb(57,94,118) 50%, rgb(8,54,84) 100%);
+	background: url(flashcards_logo.png) top 10px left 5px no-repeat, -ms-linear-gradient(to right, rgb(8,54,84) 0%,rgb(57,94,118) 50%, rgb(8,54,84) 100%);
+*/	box-shadow: 0px 2px 4px rgba(0,0,0,0.60);
 	text-align: right;
 	color: #aaa;
 }
+
+.flashcard_icon {
+	position: absolute;
+	top: 10px;
+	left: 5px;
+}
+
+
+/*
+background-image: url(flashcards_logo.png) top 10px left 5px no-repeat, linear-gradient(right, rgb(8,54,84) 0%,rgb(57,94,118) 50%, rgb(8,54,84) 100%);
+background-image: url(flashcards_logo.png) top 10px left 5px no-repeat, -o-linear-gradient(right, rgb(8,54,84) 0%,rgb(57,94,118) 50%, rgb(8,54,84) 100%);
+background-image: url(flashcards_logo.png) top 10px left 5px no-repeat, -moz-linear-gradient(right, rgb(8,54,84) 0%,rgb(57,94,118) 50%, rgb(8,54,84) 100%);
+background-image: url(flashcards_logo.png) top 10px left 5px no-repeat, -webkit-linear-gradient(right, rgb(8,54,84) 0%,rgb(57,94,118) 50%, rgb(8,54,84) 100%);
+background-image: url(flashcards_logo.png) top 10px left 5px no-repeat, -ms-linear-gradient(right, rgb(8,54,84) 0%,rgb(57,94,118) 50%, rgb(8,54,84) 100%);
+
+*/
 
 div#top-bar a {
 	font-size: 12px;
@@ -37,29 +75,36 @@ div#top-bar a:hover {
 	border-radius: 4px;
 }
 
-
-/* ==== Header area styles ==== */
+/* ==== Header area and text styles ==== */
 
 header {
 	padding: 20px 75px;
 }
 
 h1 {
-	margin: 10px 0 10px;
+	margin: 25px 0;
 	font-size: 30px;
 }
 h2 {
-	padding-top: 10px;
 	color: #555;
 	font-size: 20px;
 }
 
+p {
+	font-size: 18px;
+	line-height: 24px;
+}
+p.notice, p.alert {
+	font-size: 13px;
+	line-height: 20px;
+}
 
 /* ==== Main-content area styles ==== */
 
 div#main-content {
-	padding: 20px 75px;
+	padding: 20px 75px 0;
 	margin: 0 auto;
+	min-height: 600px;
 }
 div#main-content a {
 	font-weight: bold;
@@ -79,6 +124,9 @@ div#main-content a:hover {
 /* ==== Main-content area styles */  
 /* ==== Table styles ==== */
 
+/*rgb(110, 94, 70) -- brown
+rgb(187, 174, 156) -- tan*/
+
 table {
 	border-collapse: collapse;
 	width: 100%;
@@ -86,15 +134,37 @@ table {
 }
 
 th {
-	padding: 6px 10px;
-	background-color: rgba(156, 175, 187, 1);
+	color: rgb(255,255,255);
+	padding: 8px 12px;
+/*	background-color: rgba(110, 94, 70, 1);
+	background-color: rgba(32, 49, 59, 1);
+*/	background-color: rgb(8, 54, 84);
 	text-align: left;
+	text-transform: uppercase;
+	font-weight: lighter;
+	letter-spacing: 1px;
+}
+
+th:first-child {
+	border-top-left-radius: 10px;
+}
+
+th:last-child {
+	border-top-right-radius: 10px;
 }
 
 td {
 	padding: 6px 10px;
 	vertical-align: top;
 }
+/*
+td:first-child {
+	width: 30%;
+}
+
+td:last-child {
+	width: 25%;
+}*/
 
 tr:nth-child(even) {
 	background-color: rgba(255, 255, 255, .2);
@@ -102,6 +172,9 @@ tr:nth-child(even) {
 
 tr:nth-child(odd) {
 	background-color: rgba(255, 255, 255, .4);
+}
+tr:first-child {
+	background-color: rgba(255, 255, 255, 0);
 }
 
 /* ==== Main-content area styles */  
@@ -112,7 +185,7 @@ div#card-holder {
 	display: block;
 	width: 500px;
 	height: 500px;
-	margin: 0 auto;
+	margin: 30px auto;
 }
 
 #hidden-cards{
@@ -223,8 +296,105 @@ div#welcome-sign-in-bar a:click {
 }
 
 
+/* ==== About page styles ==== */
+
+li.no-bullet {
+	font-weight: bold;
+	margin-top: 5px;
+	list-style: none;
+	text-transform: uppercase;
+}
+div#about-container {
+	display: block;
+	margin: 0;
+	background: url(about_flashcards.png) bottom 0px left 50% no-repeat;
+	min-height: 600px;
+	border-bottom: 1px solid rgba(255,255,255,0);
+}
+
+div#about-container h1, div#about-container p {
+	text-align: center;
+}
+
+/*url(flashcards_logo.png) top 10px left 5px no-repeat
+*/
+div#about-left {
+	float: left;
+	width: 47%;
+/*	border-right: 1px solid rgb(50, 56, 59);
+*/	padding-right: 2%;
+}
+
+div#about-right {
+	float: right;
+	width: 48%;
+	padding-left: 2%;
+}
+
+div#about-left h3, div#about-right h3 {
+	margin-top: 0;
+}
+
+
+
+/* ==== Welcome page styles ==== */
+
+
+
+div#welcome-container {
+	display: block;
+	margin: 0;
+}
+
+div#welcome-left {
+	float: left;
+	width: 47%;
+/*	border-right: 1px solid rgb(50, 56, 59);
+*/	padding-right: 2%;
+}
+
+div#welcome-right {
+	float: right;
+	width: 210px;
+	padding: 20px;
+	background: rgba(255,255,255,.3);
+	border-radius: 15px;
+	margin-top: 20px;
+}
+
+div#welcome-right input[type=email], 
+div#welcome-right input[type=password] {
+	width: 200px;
+	height: 18px;
+	margin: 5px 0;
+	border-radius: 3px;
+
+	background: #DDD;
+	background: -webkit-linear-gradient(#FFF, #DDD);
+	background: -moz-linear-gradient(#FFF, #DDD);
+	background: -ms-linear-gradient(#FFF, #DDD);
+	background: -o-linear-gradient(#FFF, #DDD);
+	background: linear-gradient(#FFF, #DDD);
+}
+
+div#sign-in-form {
+	display: block;
+	margin: 0 auto;
+}
+
+div#welcome-left h1 {
+	font-size: 40px;
+	line-height: 50px;
+}
+
+div#welcome-left h2 {
+	font-size: 20px;
+	line-height: 30px;
+}
 
 /* ==== Footer bar styles ==== */
+
+
 footer {
 	padding: 30px;
 	margin: 0;

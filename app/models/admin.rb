@@ -12,7 +12,7 @@ class Admin < ActiveRecord::Base
   # Setup accessible (or protected) attributes for your model
   attr_accessible :email, :password, :password_confirmation, 
     :remember_me, :first_name, :last_name, :organization_attributes
-  # attr_accessible :title, :body
+  
 
   belongs_to :organization
   accepts_nested_attributes_for :organization
