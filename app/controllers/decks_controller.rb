@@ -4,6 +4,7 @@ class DecksController < ApplicationController
   def index
     #@decks = Deck.all
     @decks = current_user.organization.decks
+
   end
 
   def show
@@ -11,8 +12,9 @@ class DecksController < ApplicationController
 
     # action for random deck_card for the user deck#show
     @deck_card = Card.random_card_for_deck(@deck)
-
-    #Need logic to prevent the same card from appearing twice in a row
+    @guess = Guess.new
+    @guess.card_id = @deck_card.id
+    @guess.user_id = current_user.id
 
   end
 

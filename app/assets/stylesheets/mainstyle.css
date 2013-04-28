@@ -256,8 +256,21 @@ div#main-content a.flipButton{
 div#main-content a.flipButton:hover {
 	text-decoration: none;
 	background: -webkit-gradient(linear, 0% 0%, 0% 100%, from(#333), to(#666)) #666;
-
 }
+
+div#guesses {
+	width: 500px;
+	margin: 30px auto;
+}
+
+div#guesses form {
+	text-align: center;
+}
+
+/*
+div#guesses input[type="submit"], div#guesses input[type="radio"] {
+	display: block;
+} */
 
 /* ==== Welcome page sign-in area styles ==== */
 
@@ -378,6 +391,7 @@ div#welcome-right input[type=password] {
 }
 
 div#sign-in-form {
+	width: 400px;
 	display: block;
 	margin: 0 auto;
 }

@@ -29,7 +29,7 @@
 <% unless user_signed_in? || admin_signed_in? %>
 	<div id="welcome-right">
 
-<!-- 		<div id="sign-in-form"> -->
+		<div id="sign-in-form">
 			<!-- User sign-in form -->
 			<h3>User sign-in</h3>
 			<%= form_for(@user, :as => "user", :url => session_path("user")) do |f| %>
@@ -54,7 +54,7 @@
 
 			  <div><%= f.submit "Sign in" %></div>
 			<% end %>
-		<!-- </div>  end sign-in form div -->
+		</div> <!-- end sign-in form div -->
 
 	</div> <!-- end welcome-right -->
 <% end %>

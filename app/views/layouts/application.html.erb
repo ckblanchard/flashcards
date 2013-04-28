@@ -8,25 +8,8 @@
 </head>
 <body>
 
-<%= link_to image_tag("flashcards_logo.png", :class => "flashcard_icon"), root_path %>
 
-<div id="top-bar">
-
-  <% unless admin_signed_in? %>
-    
-    <% if user_signed_in? %>
-    	<%= link_to "User sign out", destroy_user_session_path, method: :delete %> | 
-      <%= "#{current_user.first_name} #{current_user.last_name}" %> | 
-      <%= link_to "Your briefcase", decks_path %>
-    <%# else %>
-    	<%# link_to "User sign in", new_user_session_path %>
-    <% end %>
-
-  <% end %>
-  
-
-
-</div> <!-- end top-bar -->
+<%= render partial: "layouts/top_bar" %>
 
 
 <div id="main-content">
@@ -38,33 +21,5 @@
 
 </div> <!-- end main-content -->
 
-<footer>
 
-  <ul>
-    <!-- <li><%# link_to "Who is using Flashcards", organizations_path %></li> -->
-  </ul>
-
-<% unless user_signed_in? %>
-  <ul>
-    <% if admin_signed_in? %>
-    <li>
-      <%= link_to "Admin sign out", destroy_admin_session_path, method: :delete %>
-    </li>
-    <li> 
-      <%= link_to "Your organization homepage", admin_root_path %>
-    </li>
-  <% else %>
-    <li>
-      <%= link_to "Create a new admin account", new_admin_registration_path %>
-    </li>
-  <% end %>
-
-    <li><%= link_to "About the app", basicpages_about_path %></li>
-
-  </ul>
-<% end %>
-
-</footer>
-
-</body>
-</html>
+<%= render partial: "layouts/footer" %>

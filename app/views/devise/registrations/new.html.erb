@@ -22,11 +22,11 @@
     <% end %>
   <% end %>
 
-  <!-- Temp - Only for a user registration -->
-  <% if resource == @user %>
-  <div><%= f.label :organization_id %><br />
-  <%= f.collection_select :organization_id, Organization.all, :id, :name %></div>
-  <% end %>
+  <!-- Temp - Only for a user registration 
+  <%# if resource == @user %>
+  <div><%# f.label :organization_id %><br />
+  <%# f.collection_select :organization_id, Organization.all, :id, :name %></div>
+  <%# end %> -->
 
   <div><%= f.label :password %><br />
   <%= f.password_field :password %></div>

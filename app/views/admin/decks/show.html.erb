@@ -1,13 +1,14 @@
-<h1><%= @deck.name %></h1>
-<h2><%= @deck.description %></h2>
-<!--<p>Maybe add some data about this deck, such as number of cards, and eventually success rate on guesses.</p> -->
-<p>This deck has <%= @deck.cards.count %> cards</p>
+<h1><small>Name: </small><%= @deck.name %></h1>
+<h2><small>Description: </small><%= @deck.description %></h2>
+
+<p>Statistics for all <%= @deck.cards.count %> cards in this deck: <%= @deck.percentage_of_deck_correct(@deck) %></p>
 
 <table>
   <tr>
     <th>Term</th>
     <th>Definition</th>
     <th>Hint</th>
+    <th>Stats</th>
     <th></th>
     <th></th>
   </tr>
@@ -17,6 +18,7 @@
     <td><%= link_to card.term, admin_deck_card_path(@deck, card) %></td>
     <td><%= card.definition %></td>
     <td><%= card.hint %></td>
+    <td><%# card.guesses %><%= @deck.percentage_of_card_guesses_correct(card) %></td>
     <td><%= link_to 'Edit card', edit_admin_deck_card_path(@deck, card) %></td>
     <td><%= link_to 'Delete card', admin_deck_card_path(@deck, card), method: :delete, data: { confirm: 'Are you sure?' } %></td>
   </tr>

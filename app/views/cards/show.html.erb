@@ -18,6 +18,20 @@
 
 </div> <!-- end card-holder -->
 
+<!-- Guess radio buttons -->
+<div>
+<%= form_for(@guess) do |f| %>
+	<%= hidden_field(:guess, :card_id) %>
+	<%= f.label :correct, "Correct", :value => "true" %>
+	<%= f.radio_button :correct, "true" %>
+	<%= f.label :correct, "Incorrect", :value => "false" %>
+	<%= f.radio_button :correct, "false" %>
+	<%= f.submit %>
+<% end %>
+</div>
+<!-- End guess radio buttons -->
+
+
   <div id="hidden-cards">
 	<div id="card-definition">
     <p>

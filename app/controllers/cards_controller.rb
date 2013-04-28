@@ -9,6 +9,8 @@ class CardsController < ApplicationController
   def show
     @deck = Deck.find(params[:deck_id])
     @card = @deck.cards.find(params[:id])
+    @guess = Guess.new
+    @guess.card_id = @card.id
   end
 
   # def new

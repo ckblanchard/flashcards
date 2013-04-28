@@ -14,9 +14,9 @@
   </tr>
 <% @organization.users.each do |user| %>
   <tr>
-  <td><%= "#{user.first_name} #{user.last_name}" %></td>
+  <td><%= link_to user.name, admin_user_path(user) %></td>
   <td><%= user.email %></td>
-  <td>Stats to come</td>
+  <td><%= user.user_total_statistics(user) %></td>
   <td><%= link_to "Delete user", organization_user_path(user), method: :delete, data: { confirm: 'Are you sure?' } %></td>
   </tr>
 <% end %>
@@ -29,7 +29,7 @@
   <tr>
     <th>Name</th>
     <th>Description</th>
-    <th></th>
+    <th>Stats</th>
     <th></th>
     <th></th>
   </tr>
@@ -38,7 +38,7 @@
   <tr>
     <td><%= link_to deck.name, admin_deck_path(deck) %></td>
     <td><%= deck.description %></td>
-    <td></td>
+    <td><%= deck.percentage_of_deck_correct(deck) %></td>
     <td><%= link_to 'Edit', edit_admin_deck_path(deck) %></td>
     <td><%= link_to 'Delete deck', [:admin, deck], method: :delete, data: { confirm: 'Are you sure?' } %></td>
   </tr>

@@ -1,0 +1,32 @@
+
+<footer>
+
+  <ul>
+    <!-- <li><%# link_to "Who is using Flashcards", organizations_path %></li> -->
+  </ul>
+
+<ul>
+  <% unless user_signed_in? %>
+
+    <% if admin_signed_in? %>
+      <li>
+        <%= link_to "Admin sign out", destroy_admin_session_path, method: :delete %>
+      </li>
+      <li> 
+        <%= link_to "Control panel", admin_root_path %>
+      </li>
+    <% else %>
+      <li>
+        <%= link_to "Create a new free account", new_admin_registration_path %>
+      </li>
+    <% end %>
+  
+  <% end %>
+
+  <li><%= link_to "About this app", basicpages_about_path %></li>
+</ul>
+
+
+</footer>
+</body>
+</html>

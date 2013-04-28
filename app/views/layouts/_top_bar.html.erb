@@ -1,0 +1,23 @@
+<%= link_to image_tag("flashcards_logo.png", :class => "flashcard_icon"), root_path %>
+
+<div id="top-bar">
+
+  <% unless admin_signed_in? %>
+    
+    <% unless user_signed_in? %>
+      <%= link_to "Create a new free account", new_admin_registration_path %>
+    <% end %>
+    
+    <% if user_signed_in? %>
+    	<%= link_to "User sign out", destroy_user_session_path, method: :delete %> | 
+      <%= current_user.name %> | 
+      <%= link_to "Your briefcase", decks_path %>
+    <%# else %>
+    	<%# link_to "User sign in", new_user_session_path %>
+    <% end %>
+  <% else %>
+    <%= link_to "Admin sign out", destroy_admin_session_path, method: :delete %> | 
+    <%= link_to "Control panel", admin_root_path %>
+  <% end %>
+  
+</div> <!-- end top-bar -->

@@ -1,7 +1,7 @@
 <%= link_to 'Back to your decks', decks_path %>
 
 <h1><%= @deck.name %></h1>
-<p>This deck has <%= @deck.cards.count %> cards</p>
+<p>This deck has <%= @deck.cards.count %> cards | Your success rate with this card: <%= current_user.user_card_statistics(current_user, @deck_card) %></p>
 
 <div id="card-holder">
 
@@ -18,13 +18,34 @@
     <a id="revert" class="flipButton" href="#">Revert</a>
   </div> <!-- end flipButtons -->
 
+
+	<!-- Guess radio buttons -->
+	<div id="guesses">
+	<%= form_for(@guess) do |f| %>
+		<%= hidden_field(:guess, :card_id) %>
+		<%= hidden_field(:guess, :user_id) %>
+		<%= f.label :correct, "Correct", :value => "true" %>
+		<%= f.radio_button :correct, "true" %>
+		<%= f.label :correct, "Incorrect", :value => "false" %>
+		<%= f.radio_button :correct, "false" %>
+		<%= f.submit "Save guess" %>
+	<% end %>
+	</div>
+	<!-- End guess radio buttons -->
+
+
 </div> <!-- end card-holder -->
+
+
+
+
 
   <div id="hidden-cards">
 
     <div id="card-definition">
       <p>
         <b>Definition:</b>
+        <%# simple_format(@deck_card.definition) %>
         <%= @deck_card.definition %>
       </p>
     </div> <!-- end card-definition -->
@@ -43,12 +64,6 @@
 <%# @deck_card.term %> 
 <%# @deck_card.id %>
 
-<!-- Future functionality to say whether you guessed correct -->
-<%# link_to 'Correct!', { :controller => "guesses", 
-                          :action => "create", 
-                          :user_id => "current_user.id", 
-                          :card_id => "deck_card.id" }, 
-                          :method => "post" %>
-<%# link_to 'Correct!', { controller: "guesses", action: "create", user_id: "current_user.id", card_id: "deck_card.id" }, method: "post" %>
+
 
 <%# link_to 'Edit', edit_deck_path(@deck) %> 

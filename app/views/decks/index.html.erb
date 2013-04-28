@@ -8,11 +8,17 @@
     <th>Percentage correct</th>
   </tr>
 
-<% current_user.organization.decks.each do |deck| %>
+<% @decks.each do |deck| %>
   <tr>
-    <td><%= link_to deck.name, deck %></td>
+    <td>
+    	<% if deck.cards.count > 0 %>
+    		<%= link_to deck.name, deck %>
+    	<% else %>
+    		<%= deck.name %> (Currently unavailable)
+    	<% end %>
+    </td>
     <td><%= deck.description %></td>
-    <td>Stats</td>
+    <td><%= current_user.user_deck_statistics(current_user, deck) %></td>
   </tr>
 <% end %>
 </table>

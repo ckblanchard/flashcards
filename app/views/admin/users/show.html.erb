@@ -1,0 +1,27 @@
+<h1>Control panel</h1>
+<h2><%= @user.name %></h2>
+
+<!-- Table of all user decks -->
+
+<!-- Iterate through all user decks and create a table for each -->
+<!-- Iterate through each card for each deck and add to each table -->
+<% @user.organization.decks.each do |deck| %>
+  <div>
+    <h3><%= deck.name %> { Success rate: <%= @user.user_deck_statistics(@user, deck) %> }</h3>
+    <table>
+  <tr>
+    <th>Term</th>
+    <th>Statistics</th>
+  </tr>
+  <% deck.cards.each do |card| %>
+    <tr>
+      <td><%= card.term %><%# card.id %></td>
+      <td>
+        <%= @user.user_card_statistics(@user, card) %>
+        <%#  %>
+      </td>
+    </tr>
+  <% end %>
+</table>
+  </div>
+<% end %>

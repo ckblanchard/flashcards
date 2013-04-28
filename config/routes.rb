@@ -22,7 +22,9 @@ Flashcards::Application.routes.draw do
     end
 
     resources :organizations
+    resources :users
   end
+
 
   # Admin sends email to user to sign up
   devise_for :users, :controllers => { :invitations => "admin/invitations" }
@@ -33,6 +35,7 @@ Flashcards::Application.routes.draw do
 
 
   resources :organizations, only: [:index, :show]
+  resources :users, only: [:index, :show]
 
 
 
