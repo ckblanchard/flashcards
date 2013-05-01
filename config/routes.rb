@@ -30,7 +30,7 @@ Flashcards::Application.routes.draw do
   devise_for :users, :controllers => { :invitations => "admin/invitations" }
   
   resources :decks, only: [:index, :show] do
-    resources :cards, only: [:index, :show, :edit, :update]
+    resources :cards, only: [:index, :show]#, :edit, :update]
   end
 
 

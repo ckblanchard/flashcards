@@ -1,0 +1,69 @@
+<%= link_to 'Back to your decks', decks_path %>
+
+<h1><%= @deck.name %></h1>
+<p>This deck has <%= @deck.cards.count %> cards | Your success rate with this card: <%= current_user.user_card_statistics(current_user, @deck_card) %></p>
+
+<div id="card-holder">
+
+  <div id="card">
+    <p>
+      <b>Term:</b>
+     <%= @deck_card.term %>
+    </p>
+  </div>
+
+  <div id="flipButtons">
+    <a id="definition" class="flipButton" href="#">Answer</a>
+    <a id="hint" class="flipButton" href="#">Need a hint?</a>
+    <a id="revert" class="flipButton" href="#">Revert</a>
+  </div> <!-- end flipButtons -->
+
+
+	<!-- Guess radio buttons -->
+	<div id="guesses">
+	<%= form_for(@guess) do |f| %>
+		<%= hidden_field(:guess, :card_id) %>
+		<%= hidden_field(:guess, :user_id) %>
+		<%= f.label :correct, "Correct", :value => "true" %>
+		<%= f.radio_button :correct, "true" %>
+		<%= f.label :correct, "Incorrect", :value => "false" %>
+		<%= f.radio_button :correct, "false" %>
+		<%= f.submit "Save guess" %>
+	<% end %>
+	</div>
+	<!-- End guess radio buttons -->
+
+
+</div> <!-- end card-holder -->
+
+
+
+
+
+  <div id="hidden-cards">
+
+    <div id="card-definition">
+      <p>
+        <b>Definition:</b>
+        <%# simple_format(@deck_card.definition) %>
+        <%= @deck_card.definition %>
+      </p>
+    </div> <!-- end card-definition -->
+
+      <div id="card-hint">
+        <p>
+          <b>Hint:</b>
+          <%= @deck_card.hint %>
+        </p>
+      </div> <!-- end card-hint -->
+
+  </div> <!-- end hidden cards -->
+
+
+
+<%# @deck_card.term %> 
+<%# @deck_card.id %>
+
+
+
+<%# link_to 'Edit', edit_deck_path(@deck) %> 

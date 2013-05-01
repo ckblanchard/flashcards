@@ -18,6 +18,8 @@ class DecksController < ApplicationController
 
   end
 
+  
+
  # def new
  #    @deck = Deck.new
  #  end

@@ -11,6 +11,9 @@ class CardsController < ApplicationController
     @card = @deck.cards.find(params[:id])
     @guess = Guess.new
     @guess.card_id = @card.id
+    @guess.user_id = current_user.id
+    @next = @card.next
+    @previous = @card.previous
   end
 
   # def new

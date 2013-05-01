@@ -1,5 +1,22 @@
+<%= link_to 'Back to all cards in this deck', deck_cards_path(@deck) %>
 
 <h2>Deck: <%= @card.deck.name %></h2>
+
+<% if @previous %>
+  <%= link_to "< Previous ", deck_card_path(@deck, @previous) %>
+<% end %>
+<% if @previous && @next %>
+ | 
+<% end %>
+<% if @next %>
+  <%= link_to " Next >", deck_card_path(@deck, @next) %>
+<% end %>
+
+
+  <!-- - if @post.previous
+    = link_to "< Previous", @post.previous
+  - if @post.next
+    = link_to "Next >", @post.next -->
 
 <div id="card-holder">
 
@@ -16,20 +33,23 @@
     <a id="revert" class="flipButton" href="#">Revert</a>
   </div> <!-- end flipButtons -->
 
-</div> <!-- end card-holder -->
 
-<!-- Guess radio buttons -->
-<div>
-<%= form_for(@guess) do |f| %>
-	<%= hidden_field(:guess, :card_id) %>
-	<%= f.label :correct, "Correct", :value => "true" %>
-	<%= f.radio_button :correct, "true" %>
-	<%= f.label :correct, "Incorrect", :value => "false" %>
-	<%= f.radio_button :correct, "false" %>
-	<%= f.submit %>
-<% end %>
-</div>
-<!-- End guess radio buttons -->
+  <!-- Guess radio buttons -->
+  <div id="guesses">
+  <%= form_for(@guess) do |f| %>
+    <%= hidden_field(:guess, :card_id) %>
+    <%= hidden_field(:guess, :user_id) %>
+    <%= f.label :correct, "Correct", :value => "true" %>
+    <%= f.radio_button :correct, "true" %>
+    <%= f.label :correct, "Incorrect", :value => "false" %>
+    <%= f.radio_button :correct, "false" %>
+    <%= f.submit "Save guess" %>
+  <% end %>
+  </div>
+  <!-- End guess radio buttons -->
+
+
+</div> <!-- end card-holder -->
 
 
   <div id="hidden-cards">
@@ -54,6 +74,5 @@
 <%# link_to 'Add another card to this deck', new_deck_card_path %>
 
 <%# link_to 'Edit', edit_deck_card_path(@deck) %> 
-<%= link_to 'Back', deck_path(@deck) %>
 
 

@@ -4,6 +4,7 @@
 <table>
   <tr>
     <th>Name</th>
+    <th>All cards</th>
     <th>Description</th>
     <th>Percentage correct</th>
   </tr>
@@ -16,6 +17,12 @@
     	<% else %>
     		<%= deck.name %> (Currently unavailable)
     	<% end %>
+    </td>
+
+    <td>
+      <% if deck.cards.count > 0 %>
+        <%= link_to "Cards", deck_cards_path(deck) %>
+      <% end %>
     </td>
     <td><%= deck.description %></td>
     <td><%= current_user.user_deck_statistics(current_user, deck) %></td>
